@@ -36,20 +36,6 @@ For each record in the dataset it is provided:
 - Its activity label.
 - An identifier of the subject who carried out the experiment. 
 
-RESHAPING THE DATA AND CREATING A TIDY DATA SET:
-Using the data described above the run_analysis.R script was written to tidy the data to a subset based on instructions from the 'Getting and Cleaning Data' course project through Coursera.
-
-The output from the run_analysis.R script is a text file called "Tidy Project Data Set.txt". This text file contains a data.frame, grouped by subject then activity, which contains an average of the mean and standard deviation measurements for each subject and each activity.
-
-Using R Studio (Version 0.98.1103), the following data files were consolidated and filtered to meet the requirements of the project. The '.txt' files used are - 'x_test', 'y_test', 'X_train', 'y_train', 'subject_test', 'subject_train', 'features', and 'activity_labels'. 
-
-The tidy data set was constructed with the following steps:
-
-1. Downloading the entire zipped data set, then
-   
-
-Note: 'meanFreq' and 'angle' variables were dropped due to not being a pure mean of the values, but rather a weighted average and an average based on a sample window, respectively. 
-
 VARIABLE NAMES DICTIONARY:
 
 Most of the measurement variables in the tidy data contain a column for each axis being measured (X,Y,Z), and each variable can be seen by viewing the tidy data set.  For brevity, this codebook leaves out the axis identifier and only provides the name of the variable and the description of the data associated with that variable.
@@ -138,3 +124,22 @@ fBodyGyroJerkMag
 Numeric, Magnitude of body jerk frequency domain signal from gyration and angular velocity.
 
 
+RESHAPING THE DATA AND CREATING A TIDY DATA SET:
+Using the data described above the run_analysis.R script was written to tidy the data to a subset based on instructions from the 'Getting and Cleaning Data' course project through Coursera.
+
+The output from the run_analysis.R script is a text file called "Tidy Project Data Set.txt". This text file contains a data.frame, grouped by subject then activity, which contains an average of the mean and standard deviation measurements for each subject and each activity.
+
+Using R Studio (Version 0.98.1103), the following data files were consolidated and filtered to meet the requirements of the project. The '.txt' files used are - 'x_test', 'y_test', 'X_train', 'y_train', 'subject_test', 'subject_train', 'features', and 'activity_labels'. 
+
+The tidy data set was constructed with the following steps:
+
+1. Downloading the entire zipped data set, unzipping the folder and loading the the separate data files into individual files.  
+2. The 'features.txt' file was used to obtain and assign the variable names (column names) of the x_test and X_train data sets.  
+3. Unnecessary characters were removed from the variable names
+4. Per the project instructions, gather only the mean and standard deviation (std) variables.  This required leaving out the angle(angular) data as well as the meanFreq (Frequency) data as these were not actual mean measurement, but angular and frequency measurements of a set of mean data
+5. Combine the corresponding 'subject' and 'label' data to the 'test' and 'train' data frames
+6. Combine the 'test' and 'train data into one data frame called 'alldata'
+7. Merge the 'activity' description data to the 'alldata' by matching on the common 'label' identifier
+8. Group the data by 'subject' and then 'activity'
+9. Create a new data frame that contains the calculated mean of each column of the variables in the step 8 data, but not calculating the mean values of the 'subject' and 'activity' variables as this would not make sense
+10. Write the resulting data frame from step 9 into a .txt file  
