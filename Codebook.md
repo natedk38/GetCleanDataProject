@@ -1,7 +1,7 @@
 DESCRIPTION OF THE EXPERIMENT AND RAW DATA:
 The raw data contains measurements taken by Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, and Luca Oneto of the Smartlab - Non Linear Complex Systems Laboratory at the University of Genoa, in Genoa, Italy.  Data was measured on a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, the researchers captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The obtained dataset was randomly partitioned into two sets, where 70% of the volunteers were selected for generating the training data and 30% the test data.
 Data from the experiment is contained in the zipped 'UCI HAR Dataset' folder  (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip), with subfolders containing the following files:
-'README.txt' - describes the experiment and data
+- 'README.txt' - describes the experiment and data
 
 - 'features_info.txt': Shows information about the variables used on the feature vector.
 
@@ -45,19 +45,15 @@ Using R Studio (Version 0.98.1103), the following data files were consolidated a
 
 The tidy data set was constructed with the following steps:
 
-    'X_test' and 'X_train' were combined by rows to constitute all observations made by the accelerometers and gyroscopes for the 30 subjects. These variables were assigned names from the features.txt file.
-    y_test and y_train were combined by rows to constitute the activities of daily living performed by the 30 subjects. The activities were labeled using the key found in activity_labels. The resulting variable was renamed "Activity".
-    subject_test and subject_train were combined by rows, and renamed to "Subject".
-    From the original data set, isolate only those variables with strings "mean" and "std" and combine them with Subject and Activity variables.
-    Finally, group the data by Subject, then Activity. For each remaining measurement variable, take the average of the values for each activity, for each subject.
+1. Downloading the entire zipped data set, then
+   
 
 Note: 'meanFreq' and 'angle' variables were dropped due to not being a pure mean of the values, but rather a weighted average and an average based on a sample window, respectively. 
 
 VARIABLE NAMES DICTIONARY:
 
-Note: The measurement variables in the tidy data contain a column for each axis being measured. In this codebook, however, these variables will be grouped together. So, 'variablenameXYZ' means that 'X' is one axis (and one variable in tidy_set), 'Y' is a second axis (another variable), and 'Z' is a third(variable).
+Most of the measurement variables in the tidy data contain a column for each axis being measured (X,Y,Z), and each variable can be seen by viewing the tidy data set.  For brevity, this codebook leaves out the axis identifier and only provides the name of the variable and the description of the data associated with that variable.
 
-This is because they possess the same definition - the only difference is the axis. In the tidy data these variables were not collapsed into one. This was done for two reasons. First, the assignment instructions seem to indicate that the tidy data should include the average for EACH measurement, for EACH subject, for EACH activity. Since each axis is its own measurement, in this tidy data they are left as such. Secondly, for the sake of analytic flexibility, these were not collapsed together. That being said, seeing as how there is no great distinction between one axis and another they are collapsed here. 
 Subject
 
 Numeric range 1:30, corresponds to one of the 30 subjects in the experiment.
